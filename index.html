@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="./src/assets/images/DEV.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>DEV - 2023 Dutch Election Viewer</title>
+  </head>
+  <body>
+    <div class="d-flex flex-column">
+
+      <!-- TITLE + STATISTICS & PRO BUTTONS -->
+      <div class="d-flex flex-row justify-content-between align-items-center mx-5">
+        <div class="d-flex flex-row gap-1 align-items-center">
+          <img src="./src/assets/images/DEV_svg.svg" alt="DEV" style="width: 100px;"/>
+          <!-- <img src="./assets/images/DEV.png" alt="DEV_png" style="width: 100px;"/> -->
+          <h2 style="color: white" class="my-3 px-3">2023 Dutch Election Viewer</h2>
+        </div>
+        <div class="mx-3">
+          <button type="button" class="btn btn-link mt-3" data-toggle="modal" data-target="#exampleModal" id="stats-btn">
+            <div class="d-flex flex-column align-items-center">
+              <img src="./src/assets/images/stats.svg" alt="Statistics"/>
+              <p style="color: white" class="mt-1">Statistics</p>
+            </div>
+          </button> 
+          <button type="button" class="btn btn-link mt-3" id="pro-btn">
+            <div class="d-flex flex-column align-items-center">
+              <img src="./src/assets/images/pro.svg" alt="Pro"/>
+              <p style="color: white" class="mt-1">Pro</p>
+            </div>
+          </button> 
+        </div>
+      </div>
+
+      <!-- CONTENT OF PAGE-->
+      <div class="d-flex flex-row mx-3">
+        <!-- MAP -->
+        <div class="d-flex flex-column" style="flex-basis: 80vw;">
+          <div id="map"></div>
+          <!-- Legend starts here  -->
+          <div class="legend text-white bg-black p-2">
+
+            <!-- First row -->
+            <div class="d-flex justify-content-center flex-nowrap mb-2">
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#00008B; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.pvv.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">PVV</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#dd2132; border:1px solid white;" class="mr-1"></div>
+                <a href="https://groenlinkspvda.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">GL/Pvda</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#3A5FCD; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.vvd.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">VVD</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#f0c400; border:1px solid white;" class="mr-1"></div>
+                <a href="https://partijnieuwsociaalcontract.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">NSC</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#00CD67; border:1px solid white;" class="mr-1"></div>
+                <a href="https://d66.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">D66</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#b0e504; border:1px solid white;" class="mr-1"></div>
+                <a href="https://boerburgerbeweging.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">BBB</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#008B00; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.cda.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">CDA</a>
+              </div>
+            </div>
+
+
+            <!-- Second row -->
+            <div class="d-flex justify-content-center flex-nowrap">
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#8B0000; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.sp.nl" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">SP</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#22EEFF; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.bewegingdenk.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">Denk</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#006B2D; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.partijvoordedieren.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">PvdD</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#a71c20; border:1px solid white;" class="mr-1"></div>
+                <a href="https://fvd.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">FvD</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#EE7C10; border:1px solid white;" class="mr-1"></div>
+                <a href="https://sgp.nl/home" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">SGP</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#730880; border:1px solid white;" class="mr-1"></div>
+                <a href="https://www.christenunie.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">CU</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#00a7eb; border:1px solid white;" class="mr-1"></div>
+                <a href="https://voltnederland.org/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">Volt</a>
+              </div>
+              <div class="d-inline-flex align-items-center mr-3 mb-2">
+                <div style="width:12px; height:12px; background-color:#756699; border:1px solid white;" class="mr-1"></div>
+                <a href="https://ja21.nl/" target="_blank" rel="noopener" class="party-link" style="font-size:12px; color:white; text-decoration:none;">JA21</a>
+              </div>
+            </div>
+
+
+          </div>
+      <!-- Legend ends here -->
+          <div class="d-flex flex-row mb-3 mt-3 justify-content-center align-items-center">
+            <button type="button" class="btn btn-outline-light mx-2" style="color: white;" id="province-btn">Province</button>
+            <button type="button" class="btn btn-outline-light mx-2" style="color: white;" id="municipality-btn">Municipality</button>
+            <button type="button" class="btn btn-outline-light mx-2" style="color: white;" id="neigh-btn">Neighborhood</button>
+          </div>
+        </div>
+
+        <!-- CARD -->
+        <div class="card text-white bg-dark mx-3" class="p-2" style="flex-basis: 50vw;">
+          <!-- <div class="card-header"></div> -->
+          <div class="card-body jolly-content" id="main-content">
+            <h5 class="card-title mb-4">National voting results (%)</h5>
+            <h5 class="card-title justify-content-center mb-4 text-center">Party for Freedom (PVV) received the majority of the national vote, giving them 37 seats in parliament.</h5>
+            <canvas class="my-4 chartjs-render-monitor" id="myChart" width="846" height="750" style="display: block; height: 285px; width: 677px;"></canvas>
+            <!-- <p class="card-text"></p> -->
+          </div>
+          <div class="card-body jolly-content" id="data-single-content">
+            <h3 class="card-title fw-bold"><p id="name"></p></h3>
+            <!-- FFFFF -->
+            <p id="winningParty" style="font-size: 20px;" class="text-center"></p>
+            <p id="votePercentage" style="font-size: 20px;" class="text-center"></p>
+            <div id="partyLogoContainer"></div>
+          </div>
+          <div class="card-body jolly-content" id="stats-content">
+            <h5 class="card-title fw-bold">Statistics</h5>
+            <p class="card-text">Discover how each political party has perfomed in the 2023 Dutch parliamentary elections. Results are broken down by province, municipality and neighborhood.</p>
+            <!-- Dropdown parties starts here -->
+            <div class="dropdown custom-dropdown mb-4 position-relative">
+              <button class="btn btn-dark dropdown-toggle text-white border-white" type="button" id="partyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Party
+              </button>
+              <div class="dropdown-menu" aria-labelledby="partyDropdown">
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/Logo%20PVV_tcm181-113708.jpg" alt="PVV Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Party for Freedom (PVV)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-12/GL-PvdA-Logo-transparant.png" alt="GL/PvdA Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Green-Left Labour (GL/PvdA)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-12/NSC_partijlogo.svg_.png" alt="NSC Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  New Social Contract (NSC)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/d66_logo_rgb.png" alt="D66 Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Democrats 66 (D66)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2025-06/Logo_BBB_GROEN.png" alt="BBB Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Farmer-Citizen Movement (BBB)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_cda.jpg" alt="CDA Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Christian Democratic Appeal (CDA)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_sp.png" alt="SP Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Socialist Party (SP)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/denk-tk.jpg" alt="DENK Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Political Movement Denk (DENK)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/partij_voor_de_dieren.jpg" alt="PvdD Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Party for the Animals (PvdD)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/forum_v_democratie.jpg" alt="FvD Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Forum for Democracy (FvD)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_sgp_2016.jpg" alt="SGP Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Calvinist Political Party (SGP)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_christenunie_tcm181-104419.gif" alt="CU Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Christian Union (CU)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/atoms/images/volt_logo_max37mm1.jpg" alt="Volt Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Volt Netherlands (Volt)
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                  <img src="https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/ja21_logo_rgb.png" alt="JA21 Logo"
+                      class="rounded-circle" style="width: 40px; height: 40px; object-fit: scale-down;">
+                  Conservative Liberals (JA21)
+                </a>
+              </div>
+            </div>
+            <br>
+            <!-- <div id="data-single-content-prov">
+              <h5 class="card-title"><p id="name-prov"></p></h5>
+              <p id="winningParty"></p>
+              <p id="votePercentage"></p>
+            </div>
+            <div id="data-single-content-mun">
+              <h5 class="card-title"><p id="name-mun"></p></h5>
+              <p id="winningParty"></p>
+              <p id="votePercentage"></p>
+            </div>
+            <div id="data-single-content-neigh">
+              <h5 class="card-title"><p id="name-neigh"></p></h5>
+              <p id="winningParty"></p>
+              <p id="votePercentage"></p>
+            </div> -->
+          </div>
+          <div class="card-body jolly-content" id="pro-content">
+            <h5 class="card-title">Pro title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <br>
+            <!-- <div id="data-single-content-prov">
+              <h5 class="card-title">Province title</h5>
+              <p id="name"></p>
+              <p id="winningParty"></p>
+              <p id="votePercentage"></p>
+            </div>
+            <div id="">
+              <h5 class="card-title">Muni title</h5>
+              <p id="name"></p>
+              <p id="winningParty"></p>
+              <p id="votePercentage"></p>
+            </div>
+            <div id="">
+              <h5 class="card-title">Neigh title</h5>
+              <p id="name"></p>
+              <p id="winningParty"></p>
+              <p id="votePercentage"></p>
+            </div> -->
+          </div>
+          <div class="card-footer">
+            <button type="button" class="btn btn-link mt-0 mb-0 float-left" id="back-btn">
+              <div class="d-flex gap-2" style="color: white;">
+                <img src="./src/assets/images/back.svg" alt="Go back"/>
+                Go to main page
+              </div>
+            </button>
+            <button type="button" class="btn btn-link mt-0 mb-0 float-right" id="download-btn">
+              <div class="d-flex gap-2" style="color: white;">
+                <img src="./src/assets/images/download.svg" alt="Download"/>
+                Download
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Main JavaScript file, in which all logic is in -->
+    <script type="module" src="./main.js"></script>
+    <div id="hover-tooltip" style="
+      position: absolute;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 12px;
+      display: none;
+      z-index: 1000;
+    "></div>
+  </body>
+</html>
+

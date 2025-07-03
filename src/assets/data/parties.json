@@ -1,0 +1,92 @@
+[
+    {
+        "abbreviation": "PVV",
+        "partyName": "Partij voor de Vrijheid",
+        "nationalResult": 23.49,
+        "hex": "#00008B"
+    },
+    {
+        "abbreviation": "GL/PVDA",
+        "partyName": "Groenlinks / Partij van de Arbeid",
+        "nationalResult": 15.75,
+        "hex": "#dd2132"
+    },
+    {
+        "abbreviation": "VVD",
+        "partyName": "Volkspartij voor Vrijheid en Democratie",
+        "nationalResult": 15.24,
+        "hex": "#3A5FCD"
+    },
+    {
+        "abbreviation": "NSC",
+        "partyName": "Nieuw Sociaal Contract",
+        "nationalResult": 12.88,
+        "hex": "#f0c400"
+    },
+    {
+        "abbreviation": "D66",
+        "partyName": "Democraten 66",
+        "nationalResult": 6.29,
+        "hex": "#00CD67"
+    },
+    {
+        "abbreviation": "BBB",
+        "partyName": "BoerBurgerBeweging",
+        "nationalResult": 4.65,
+        "hex": "#b0e504"
+    },
+    {
+        "abbreviation": "CDA",
+        "partyName": "Christen-Democratisch Appèl",
+        "nationalResult": 3.31,
+        "hex": "#008B00"
+    },
+    {
+        "abbreviation": "SP",
+        "partyName": "Socialistische Partij",
+        "nationalResult": 3.15,
+        "hex": "#8B0000"
+    },
+    {
+        "abbreviation": "DENK",
+        "partyName": "DENK",
+        "nationalResult": 2.37,
+        "hex": "#22EEFF"
+    },
+    {
+        "abbreviation": "PVDD",
+        "partyName": "Partij voor de Dieren",
+        "nationalResult": 2.25,
+        "hex": "#006B2D"
+    },
+    {
+        "abbreviation": "FVD",
+        "partyName": "Forum voor Democratie",
+        "nationalResult": 2.23,
+        "hex": "#a71c20"
+    },
+    {
+        "abbreviation": "SGP",
+        "partyName": "Staatkundig Gereformeerde Partij",
+        "nationalResult": 2.08,
+        "hex": "#EE7C10"
+    },
+    {
+        "abbreviation": "CU",
+        "partyName": "ChristenUnie",
+        "nationalResult": 2.04,
+        "hex": "#730880"
+    },
+    {
+        "abbreviation": "VOLT",
+        "partyName": "Volt Nederland",
+        "nationalResult": 1.71,
+        "hex": "#00a7eb"
+    },
+    {
+        "abbreviation": "JA21",
+        "partyName": "Het Juiste Antwoord 2021 (Conservatieve Liberalen)",
+        "nationalResult": 0.68,
+        "hex": "#756699"
+    }
+]
