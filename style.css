@@ -50,6 +50,16 @@ html, body {
   display: none;
 }
 
+#cityDropdownMenu a.selected {
+  background-color: #007bff;  /* Bootstrap blue */
+  color: white;
+  font-weight: bold;
+}
+#cityDropdownMenu a:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
 
 
 

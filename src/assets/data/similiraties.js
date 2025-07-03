@@ -6,6 +6,7 @@ export const wmsLayerSimCity = new ImageLayer({
       url: 'http://geoictacademy.nl/geoserver/grp1/wms',
       params: { 
         LAYERS: 'SimCity',
+        // 'CQL_FILTER': encodeURIComponent("attribute_name='value1'")
         // CQL_FILTER: "attribute_name='value1'"
       },
       ratio: 1,

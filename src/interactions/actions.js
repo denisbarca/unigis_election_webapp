@@ -1,37 +1,9 @@
-// import { wmsLayerHighestProvince } from './src/assets/data/province.js';
-// import { wmsLayerHighestMunicipality } from './src/assets/data/gemeente.js';
-// import { wmsLayerHighestNeigh } from './src/assets/data/neigh.js';
-import { centroid } from 'ol/interaction/Pointer.js';
 import { wmsLayerHighestMunicipality, wmsLayerCombinedMunicipality } from '../assets/data/gemeente.js';
 import { wmsLayerCombinedNeigh, wmsLayerHighestNeigh } from '../assets/data/neigh.js';
 import { wmsLayerCombinedProvince, wmsLayerHighestProvince } from '../assets/data/province.js';
+import { wmsLayerSimCity } from '../assets/data/similiraties.js';
 import { CENTER_COORDS, setProxyForUrl, ZOOM_LEVEL } from '../utils/helper.js';
 
-
-// export function showProvince() {
-//   map.removeLayer(wmsLayerHighestMunicipality);
-//   map.removeLayer(wmsLayerHighestNeigh);
-//   map.addLayer(wmsLayerHighestProvince);
-// }
-
-// export function showMunicipality() {
-//   map.removeLayer(wmsLayerHighestProvince);
-//   map.removeLayer(wmsLayerHighestNeigh);
-//   map.addLayer(wmsLayerHighestMunicipality);
-// }
-
-// export function showNeigh() {
-//   map.removeLayer(wmsLayerHighestProvince);
-//   map.removeLayer(wmsLayerHighestMunicipality);
-//   map.addLayer(wmsLayerHighestNeigh);
-// }
-
-export function resetMap(map) {
-  console.log(ZOOM_LEVEL, CENTER_COORDS);
-  
-  map.getView().setZoom(ZOOM_LEVEL);
-  map.getView().setCenter(CENTER_COORDS);
-}
 
 function setLayer(dataLevel) {
   switch (dataLevel) {
@@ -64,7 +36,7 @@ export async function showFeaturesProps(map, evt, dataLevel) {
   const url = layerInfo.layer.getSource().getFeatureInfoUrl(
     evt.coordinate,
     viewResolution,
-    'EPSG:3857',
+    'EPSG:28992',
     {
       'INFO_FORMAT': 'application/json',
       'QUERY_LAYERS': layerInfo.layerName,
@@ -104,46 +76,24 @@ export async function showFeaturesProps(map, evt, dataLevel) {
   return null;
 }
 
-export async function hoverFeaturesProps(map, evt, dataLevel) {
-  let layerInfo = setLayer(dataLevel);
-
-  const view = map.getView();
-  const viewResolution = view.getResolution();
-  const url = layerInfo.layer.getSource().getFeatureInfoUrl(
-    evt.coordinate,
-    viewResolution,
-    'EPSG:28992',
-    {
-      'INFO_FORMAT': 'application/json',
-      'QUERY_LAYERS': layerInfo.layerName,
-    }
-  );
-  console.log(url);
-  
-
-  const tooltip = document.getElementById("hover-tooltip");
-
-  if (url) {
+export async function showSimilarCities(selectedCity) {
+  const cql = `city='${selectedCity}'`; // Replace 'city' with the correct attribute name
+  const wfsUrl = `http://geoictacademy.nl/geoserver/grp1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=grp1%3ASimCity&outputFormat=application%2Fjson&maxFeatures=400&CQL_FILTER=${encodeURIComponent(cql)}`;
+  if (wfsUrl) {
     try {
-      const response = await fetch(setProxyForUrl(url));
+      const response = await fetch(wfsUrl);
       const data = await response.json();
-
       if (data.features.length > 0) {
-        const props = data.features[0].properties;
-        const province = props.province;
-
-        // Position tooltip near mouse
-        tooltip.style.left = `${evt.originalEvent.pageX + 10}px`;
-        tooltip.style.top = `${evt.originalEvent.pageY + 10}px`;
-        tooltip.style.display = 'block';
-        tooltip.textContent = province;
+        return data.features[0].properties.Top5_Sim;
       } else {
-        tooltip.style.display = 'none';
+        alert('No feature found at clicked location.');
+        return null;
       }
-    } catch (e) {
-      tooltip.style.display = 'none';
+    } catch (error) {
+      console.error('GetFeatureInfo error:', error);
+      return null;
     }
-  } else {
-    tooltip.style.display = 'none';
   }
+
+  return null;
 }

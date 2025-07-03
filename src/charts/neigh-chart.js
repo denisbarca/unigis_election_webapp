@@ -1,11 +1,11 @@
 import { Chart, plugins, scales } from 'chart.js';
-import { partyVariable } from '../utils/helper.js';
+import { partyVariableObjects } from '../utils/helper.js';
 import { showFeaturesProps } from '../interactions/actions.js';
 
 export async function getDetailChartNeighConfig() {
     console.log('detail');
     
-  const partiesInfo = await partyVariable();
+  const partiesInfo = await partyVariableObjects();
   const featuresInfo = await showFeaturesProps();
   console.log(featuresInfo);
   

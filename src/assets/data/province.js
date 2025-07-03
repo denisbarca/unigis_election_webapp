@@ -37,7 +37,9 @@ export const wmsLayerCombinedProvince = new ImageLayer({
 export const wmsLayerHighestProvince = new ImageLayer({
   source: new ImageWMS({
       url: 'http://geoictacademy.nl/geoserver/grp1/wms',
-      params: { LAYERS: 'highest_province' },
+      params: { LAYERS: 'highest_province',
+        // STYLES: 
+       },
       serverType: 'geoserver',
       
   })

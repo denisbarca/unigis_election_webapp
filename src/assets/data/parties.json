@@ -1,92 +1,137 @@
 [
-    {
-        "abbreviation": "PVV",
-        "partyName": "Partij voor de Vrijheid",
-        "nationalResult": 23.49,
-        "hex": "#00008B"
-    },
-    {
-        "abbreviation": "GL/PVDA",
-        "partyName": "Groenlinks / Partij van de Arbeid",
-        "nationalResult": 15.75,
-        "hex": "#dd2132"
-    },
-    {
-        "abbreviation": "VVD",
-        "partyName": "Volkspartij voor Vrijheid en Democratie",
-        "nationalResult": 15.24,
-        "hex": "#3A5FCD"
-    },
-    {
-        "abbreviation": "NSC",
-        "partyName": "Nieuw Sociaal Contract",
-        "nationalResult": 12.88,
-        "hex": "#f0c400"
-    },
-    {
-        "abbreviation": "D66",
-        "partyName": "Democraten 66",
-        "nationalResult": 6.29,
-        "hex": "#00CD67"
-    },
-    {
-        "abbreviation": "BBB",
-        "partyName": "BoerBurgerBeweging",
-        "nationalResult": 4.65,
-        "hex": "#b0e504"
-    },
-    {
-        "abbreviation": "CDA",
-        "partyName": "Christen-Democratisch Appèl",
-        "nationalResult": 3.31,
-        "hex": "#008B00"
-    },
-    {
-        "abbreviation": "SP",
-        "partyName": "Socialistische Partij",
-        "nationalResult": 3.15,
-        "hex": "#8B0000"
-    },
-    {
-        "abbreviation": "DENK",
-        "partyName": "DENK",
-        "nationalResult": 2.37,
-        "hex": "#22EEFF"
-    },
-    {
-        "abbreviation": "PVDD",
-        "partyName": "Partij voor de Dieren",
-        "nationalResult": 2.25,
-        "hex": "#006B2D"
-    },
-    {
-        "abbreviation": "FVD",
-        "partyName": "Forum voor Democratie",
-        "nationalResult": 2.23,
-        "hex": "#a71c20"
-    },
-    {
-        "abbreviation": "SGP",
-        "partyName": "Staatkundig Gereformeerde Partij",
-        "nationalResult": 2.08,
-        "hex": "#EE7C10"
-    },
-    {
-        "abbreviation": "CU",
-        "partyName": "ChristenUnie",
-        "nationalResult": 2.04,
-        "hex": "#730880"
-    },
-    {
-        "abbreviation": "VOLT",
-        "partyName": "Volt Nederland",
-        "nationalResult": 1.71,
-        "hex": "#00a7eb"
-    },
-    {
-        "abbreviation": "JA21",
-        "partyName": "Het Juiste Antwoord 2021 (Conservatieve Liberalen)",
-        "nationalResult": 0.68,
-        "hex": "#756699"
-    }
+  {
+    "abbreviation": "PVV",
+    "partyName": "Partij voor de Vrijheid",
+    "partyName_eng": "Party for Freedom",
+    "nationalResult": 23.49,
+    "hex": "#00008B",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/Logo%20PVV_tcm181-113708.jpg",
+    "website": "https://www.pvv.nl/"
+  },
+  {
+    "abbreviation": "GL_PVDA",
+    "partyName": "Groenlinks / Partij van de Arbeid",
+    "partyName_eng": "Green-Left Labour",
+    "nationalResult": 15.75,
+    "hex": "#dd2132",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-12/GL-PvdA-Logo-transparant.png",
+    "website": "https://groenlinkspvda.nl/"
+  },
+  {
+    "abbreviation": "VVD",
+    "partyName": "Volkspartij voor Vrijheid en Democratie",
+    "partyName_eng": "People’s Party for Freedom and Democracy",
+    "nationalResult": 15.24,
+    "hex": "#3A5FCD",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/vvd_standaard_1080x1080_rond.png",
+    "website": "https://www.vvd.nl/"
+  },
+  {
+    "abbreviation": "NSC",
+    "partyName": "Nieuw Sociaal Contract",
+    "partyName_eng": "New Social Contract",
+    "nationalResult": 12.88,
+    "hex": "#f0c400",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-12/NSC_partijlogo.svg_.png",
+    "website": "https://partijnieuwsociaalcontract.nl/"
+  },
+  {
+    "abbreviation": "D66",
+    "partyName": "Democraten 66",
+    "partyName_eng": "Democrats 66",
+    "nationalResult": 6.29,
+    "hex": "#00CD67",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/d66_logo_rgb.png",
+    "website": "https://d66.nl/"
+  },
+  {
+    "abbreviation": "BBB",
+    "partyName": "BoerBurgerBeweging",
+    "partyName_eng": "Farmer-Citizen Movement",
+    "nationalResult": 4.65,
+    "hex": "#b0e504",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2025-06/Logo_BBB_GROEN.png",
+    "website": "https://boerburgerbeweging.nl/"
+  },
+  {
+    "abbreviation": "CDA",
+    "partyName": "Christen-Democratisch Appèl",
+    "partyName_eng": "Christian Democratic Appeal",
+    "nationalResult": 3.31,
+    "hex": "#008B00",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_cda.jpg",
+    "website": "https://www.cda.nl/"
+  },
+  {
+    "abbreviation": "SP",
+    "partyName": "Socialistische Partij",
+    "partyName_eng": "Socialist Party",
+    "nationalResult": 3.15,
+    "hex": "#8B0000",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_sp.png",
+    "website": "https://www.sp.nl"
+  },
+  {
+    "abbreviation": "DENK",
+    "partyName": "DENK",
+    "partyName_eng": "Political Movement Denk",
+    "nationalResult": 2.37,
+    "hex": "#22EEFF",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/denk-tk.jpg",
+    "website": "https://www.bewegingdenk.nl/"
+  },
+  {
+    "abbreviation": "PVDD",
+    "partyName": "Partij voor de Dieren",
+    "partyName_eng": "Party for the Animals",
+    "nationalResult": 2.25,
+    "hex": "#006B2D",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/partij_voor_de_dieren.jpg",
+    "website": "https://www.partijvoordedieren.nl/"
+  },
+  {
+    "abbreviation": "FVD",
+    "partyName": "Forum voor Democratie",
+    "partyName_eng": "Forum for Democracy",
+    "nationalResult": 2.23,
+    "hex": "#a71c20",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/forum_v_democratie.jpg",
+    "website": "https://fvd.nl/"
+  },
+  {
+    "abbreviation": "SGP",
+    "partyName": "Staatkundig Gereformeerde Partij",
+    "partyName_eng": "Calvinist Political Party",
+    "nationalResult": 2.08,
+    "hex": "#EE7C10",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_sgp_2016.jpg",
+    "website": "https://sgp.nl/home"
+  },
+  {
+    "abbreviation": "CU",
+    "partyName": "ChristenUnie",
+    "partyName_eng": "Christian Union",
+    "nationalResult": 2.04,
+    "hex": "#730880",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/logo_christenunie_tcm181-104419.gif",
+    "website": "https://www.christenunie.nl/"
+  },
+  {
+    "abbreviation": "VOLT",
+    "partyName": "Volt Nederland",
+    "partyName_eng": "Volt Netherlands",
+    "nationalResult": 1.71,
+    "hex": "#00a7eb",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/atoms/images/volt_logo_max37mm1.jpg",
+    "website": "https://voltnederland.org/"
+  },
+  {
+    "abbreviation": "JA21",
+    "partyName": "Het Juiste Antwoord 2021 (Conservatieve Liberalen)",
+    "partyName_eng": "Conservative Liberals",
+    "nationalResult": 0.68,
+    "hex": "#756699",
+    "logo": "https://www.houseofrepresentatives.nl/sites/default/files/styles/small/public/2023-09/ja21_logo_rgb.png",
+    "website": "https://ja21.nl/"
+  }
 ]
