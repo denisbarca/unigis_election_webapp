@@ -97,3 +97,51 @@ export async function showSimilarCities(selectedCity) {
 
   return null;
 }
+
+export async function showFeaturesProps(map, evt, dataLevel) {
+  let layerInfo = setLayer(dataLevel);
+
+  const view = map.getView();
+  const viewResolution = view.getResolution();
+  const url = layerInfo.layer.getSource().getFeatureInfoUrl(
+    evt.coordinate,
+    viewResolution,
+    'EPSG:28992',
+    {
+      'INFO_FORMAT': 'application/json',
+      'QUERY_LAYERS': layerInfo.layerName,
+    }
+  );
+  console.log(url);
+  
+
+  if (url) {
+    try {
+      const response = await fetch(setProxyForUrl(url));
+      console.log(response);
+      
+      const data = await response.json();
+      console.log(data);
+      
+      if (data.features.length > 0) {
+        const props = data.features[0].properties;
+        return {
+          toponym: props[layerInfo.entity],
+          party: props.party,
+          vote: props.percentage_votes,
+          // top5_party: Object.fromEntries(
+          //   Object.entries(obj).filter(([key]) => !excludedKeys.includes(key))
+          // )
+        };
+      } else {
+        alert('No feature found at clicked location.');
+        return null;
+      }
+    } catch (error) {
+      console.error('GetFeatureInfo error:', error);
+      return null;
+    }
+  }
+
+  return null;
+}

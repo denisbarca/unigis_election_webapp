@@ -23,6 +23,9 @@ import { wmsLayerCombinedNeigh, wmsLayerHighestNeigh } from './src/assets/data/n
 import { showFeaturesProps, showSimilarCities } from './src/interactions/actions.js';
 import { CENTER_COORDS, removeAllLayers, ZOOM_LEVEL, partyVariableObjects, partyVariableJSON, getMunicipalities, clearDropdown, downloadGeoJSON, downloadCSV } from './src/utils/helper.js';
 import { getNationalChartConfig } from './src/charts/national-chart.js';
+import VectorLayer from 'ol/layer/Vector.js';
+import VectorSource from 'ol/source/Vector.js';
+import GeoJSON from 'ol/format/GeoJSON';
 
 //#region Variables
 var dataLevel = 'Province';
@@ -36,6 +39,13 @@ const neighBtn = document.getElementById("neigh-btn");
 const projection = new Projection({
   code: 'EPSG:28992',
   units: 'metric'
+});
+
+const country = new VectorLayer({
+    source: new VectorSource({
+    format: new GeoJSON(),
+    url: './src/assets/data/netherlands.geojson',
+    }),
 });
 //#endregion
 
@@ -103,7 +113,11 @@ function showProvince() {
 
 function showMunicipality() {
   removeAllLayers(map);
-  map.addLayer(wmsLayerHighestMunicipality);  
+  map.addLayer(wmsLayerHighestMunicipality); 
+  wmsLayerHighestMunicipality.on('imageloadstart', () => {
+  loadingImages++;
+  spinner.style.display = 'block';
+}); 
   dataLevel = 'Municipality';
   // document.querySelectorAll('#data-single-content-prov, #data-single-content-mun, #data-single-content-neigh')
   //     .forEach(el => el.style.display = 'none');
@@ -152,10 +166,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       'CQL_FILTER': ''
     });
     map.addLayer(wmsLayerSimCity);
+    map.addLayer(country);
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
     document.getElementById("legend").style.display = "none";
     await setMunicipalitiesForm();
+    console.log(map.getAllLayers());
+    
     // showSection("stats-content");
     // resetMap(map);
   });
@@ -482,10 +499,5 @@ Chart.register(
 
 
 
-// const country = new VectorLayer({
-//     source: new VectorSource({
-//     format: new GeoJSON(),
-//     url: './src/assets/data/netherlands.geojson',
-//     }),
-// });
+
 
