@@ -42,8 +42,6 @@ export async function showFeaturesProps(map, evt, dataLevel) {
       'QUERY_LAYERS': layerInfo.layerName,
     }
   );
-  console.log(url);
-  
 
   if (url) {
     try {

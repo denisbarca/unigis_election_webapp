@@ -63,6 +63,22 @@ const map = new Map({
     minZoom: ZOOM_LEVEL,
   })
 });
+
+const resetBtn = document.getElementById("reset-btn");
+document.getElementById("reset-btn").addEventListener("click", () => {
+  resetView();
+  dataLevel = 'Province';
+});
+
+
+function resetView() {
+  map.getView().animate({
+    center: fromLonLat(CENTER_COORDS),
+    zoom: ZOOM_LEVEL,
+    duration: 500
+  });
+}
+
 //#endregion
 
 //#region Startup of application

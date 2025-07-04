@@ -6,10 +6,10 @@
 
 html, body {
   margin: 0;
-  height: 100%;
+  height: 105%;
   width: 100vw;
   background-color: black;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #map {
