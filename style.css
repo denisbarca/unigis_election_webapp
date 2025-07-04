@@ -60,6 +60,19 @@ html, body {
   color: white;
 }
 
+.legend-party {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  z-index: 100;
+  bottom: 10px;
+  width: 300px;
+  height: auto;
+  /* background: white;
+  padding: 5px;
+  border: 1px solid #ccc; */
+}
+
 
 
 

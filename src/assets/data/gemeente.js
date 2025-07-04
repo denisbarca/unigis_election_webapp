@@ -53,3 +53,24 @@ export const wmsLayerHighestMunicipalityNSC = new ImageLayer({
 });
 
 export const wmsLayerListMunicipalitiesUrl = 'http://geoictacademy.nl/geoserver/grp1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=grp1%3Ahighest_municipality&outputFormat=application%2Fjson&maxFeatures=400';
+
+// add legend of the wms layer
+export const legendMunicipalityPVV = 'http://geoictacademy.nl/geoserver/grp1/wms?' +
+    'REQUEST=GetLegendGraphic&' +
+    'VERSION=1.0.0&' +
+    'FORMAT=image/png&' +
+    'LAYER=gemeente_percentage_pvv';
+
+// add legend of the wms layer
+export const legendMunicipalityGL = 'http://geoictacademy.nl/geoserver/grp1/wms?' +
+    'REQUEST=GetLegendGraphic&' +
+    'VERSION=1.0.0&' +
+    'FORMAT=image/png&' +
+    'LAYER=gemeente_percentage_per_party';
+
+  // add legend of the wms layer
+export const legendMunicipalityNSC = 'http://geoictacademy.nl/geoserver/grp1/wms?' +
+    'REQUEST=GetLegendGraphic&' +
+    'VERSION=1.0.0&' +
+    'FORMAT=image/png&' +
+    'LAYER=gemeente_percentage_nsc';

@@ -16,10 +16,10 @@ import {Map, Tile, View} from 'ol';
 import { fromLonLat, Projection } from 'ol/proj';
 import {defaults as defaultControls} from 'ol/control/defaults.js';
 import { defaults as defaultInteractions, DragPan } from 'ol/interaction';
-import { wmsLayerCombinedProvince, wmsLayerHighestProvince, wmsLayerHighestProvinceGL, wmsLayerHighestProvinceNSC, wmsLayerHighestProvincePVV } from './src/assets/data/province.js';
-import { wmsLayerHighestMunicipality, wmsLayerCombinedMunicipality, wmsLayerHighestMunicipalityPVV, wmsLayerHighestMunicipalityGL, wmsLayerHighestMunicipalityNSC } from './src/assets/data/gemeente.js';
+import { legendProvinceGL, legendProvinceNSC, legendProvincePVV, wmsLayerCombinedProvince, wmsLayerHighestProvince, wmsLayerHighestProvinceGL, wmsLayerHighestProvinceNSC, wmsLayerHighestProvincePVV } from './src/assets/data/province.js';
+import { wmsLayerHighestMunicipality, wmsLayerCombinedMunicipality, wmsLayerHighestMunicipalityPVV, wmsLayerHighestMunicipalityGL, wmsLayerHighestMunicipalityNSC, legendMunicipalityGL, legendMunicipalityNSC, legendMunicipalityPVV } from './src/assets/data/gemeente.js';
 import { wmsLayerSimCity } from './src/assets/data/similiraties.js';
-import { wmsLayerCombinedNeigh, wmsLayerHighestNeigh, wmsLayerHighestNeighGL, wmsLayerHighestNeighNSC, wmsLayerHighestNeighPVV } from './src/assets/data/neigh.js';
+import { legendNeighGL, legendNeighNSC, legendNeighPVV, wmsLayerCombinedNeigh, wmsLayerHighestNeigh, wmsLayerHighestNeighGL, wmsLayerHighestNeighNSC, wmsLayerHighestNeighPVV } from './src/assets/data/neigh.js';
 import { showFeaturesProps, showSimilarCities } from './src/interactions/actions.js';
 import { CENTER_COORDS, removeAllLayers, ZOOM_LEVEL, partyVariableObjects, partyVariableJSON, getMunicipalities, clearDropdown, downloadGeoJSON, downloadCSV } from './src/utils/helper.js';
 import { getNationalChartConfig } from './src/charts/national-chart.js';
@@ -122,7 +122,6 @@ function showProvince() {
   removeAllLayers(map);
   map.addLayer(wmsLayerCombinedProvince);
   dataLevel = 'Province';
-  console.log(map.getAllLayers());
   
   // document.querySelectorAll('#data-single-content-prov, #data-single-content-mun, #data-single-content-neigh')
   //     .forEach(el => el.style.display = 'none');
@@ -132,10 +131,6 @@ function showProvince() {
 function showMunicipality() {
   removeAllLayers(map);
   map.addLayer(wmsLayerCombinedMunicipality); 
-//   wmsLayerHighestMunicipality.on('imageloadstart', () => {
-//   loadingImages++;
-//   spinner.style.display = 'block';
-// }); 
   dataLevel = 'Municipality';
   // document.querySelectorAll('#data-single-content-prov, #data-single-content-mun, #data-single-content-neigh')
   //     .forEach(el => el.style.display = 'none');
@@ -170,6 +165,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await setPartiesForm();
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
+    console.log(legendProvincePVV);
+    
+    // document.getElementById('legend-image').src = legendProvincePVV;
     // document.getElementById('topsCities').style.display = 'none';
     // showSection("stats-content");
     // showSection("data-single-content-prov");
@@ -189,6 +187,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
     document.getElementById("legend").style.display = "none";
+    document.getElementById("legend-party").style.display = 'none';
     await setMunicipalitiesForm();
     console.log(map.getAllLayers());
     
@@ -203,6 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     removeAllLayers(map);
     map.addLayer(wmsLayerCombinedProvince);
     document.getElementById("legend").style.display = 'block';
+    document.getElementById("legend-party").style.display = 'none';
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
     // document.getElementById('topsCities').style.display = 'none';
@@ -352,28 +352,46 @@ document.getElementById("partyDropdownMenu").addEventListener("click", async fun
     //TODO - Add layer based on dataLevel
     switch (dataLevel) {
       case 'Municipality':
-        if (selectedParty.includes('GL_PVDA'))
+        if (selectedParty.includes('GL_PVDA')) {
           map.addLayer(wmsLayerHighestMunicipalityGL);
-        else if (selectedParty.includes('NSC'))
+          document.getElementById('legend-image').src = legendMunicipalityGL;
+        }
+        else if (selectedParty.includes('NSC')) {
           map.addLayer(wmsLayerHighestMunicipalityNSC);
-        else 
+          document.getElementById('legend-image').src = legendMunicipalityNSC;
+        }
+        else {
           map.addLayer(wmsLayerHighestMunicipalityPVV);
+          document.getElementById('legend-image').src = legendMunicipalityPVV;
+        }
         break;
       case 'Neigh':
-        if (selectedParty.includes('GL_PVDA'))
+        if (selectedParty.includes('GL_PVDA')) {
           map.addLayer(wmsLayerHighestNeighGL);
-        else if (selectedParty.includes('NSC'))
+          document.getElementById('legend-image').src = legendNeighGL;
+        }
+        else if (selectedParty.includes('NSC')) {
           map.addLayer(wmsLayerHighestNeighNSC);
-        else 
+          document.getElementById('legend-image').src = legendNeighNSC;
+        }
+        else {
           map.addLayer(wmsLayerHighestNeighPVV);
+          document.getElementById('legend-image').src = legendNeighPVV;
+        }
         break;
       default:
-        if (selectedParty.includes('GL_PVDA'))
+        if (selectedParty.includes('GL_PVDA')) {
           map.addLayer(wmsLayerHighestProvinceGL);
-        else if (selectedParty.includes('NSC'))
+          document.getElementById('legend-image').src = legendProvinceGL;
+        }
+        else if (selectedParty.includes('NSC')) {
           map.addLayer(wmsLayerHighestProvinceNSC);
-        else 
+          document.getElementById('legend-image').src = legendProvinceNSC;
+        }
+        else {
           map.addLayer(wmsLayerHighestProvincePVV);
+          document.getElementById('legend-image').src = legendProvincePVV;
+        }
         break;
     }
   }

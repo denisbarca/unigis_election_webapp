@@ -77,6 +77,27 @@ export const wmsLayerHighestProvinceNSC = new ImageLayer({
   })
 });
 
+// add legend of the wms layer
+export const legendProvincePVV = 'http://geoictacademy.nl/geoserver/grp1/wms?' +
+    'REQUEST=GetLegendGraphic&' +
+    'VERSION=1.0.0&' +
+    'FORMAT=image/png&' +
+    'LAYER=provinces_perc_pvv';
+
+// add legend of the wms layer
+export const legendProvinceGL = 'http://geoictacademy.nl/geoserver/grp1/wms?' +
+    'REQUEST=GetLegendGraphic&' +
+    'VERSION=1.0.0&' +
+    'FORMAT=image/png&' +
+    'LAYER=province_perc_gl_pvda';
+
+  // add legend of the wms layer
+export const legendProvinceNSC = 'http://geoictacademy.nl/geoserver/grp1/wms?' +
+    'REQUEST=GetLegendGraphic&' +
+    'VERSION=1.0.0&' +
+    'FORMAT=image/png&' +
+    'LAYER=provinces_perc_nsc';
+
 // export const urlProvince = function(evt, viewResolution) {
 //   console.log(
 //   ));
