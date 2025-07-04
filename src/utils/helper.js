@@ -2,7 +2,7 @@ import { Chart, plugins, scales } from 'chart.js';
 import { wmsLayerListMunicipalitiesUrl } from '../assets/data/gemeente';
 
 // Settings for Map visualization
-export const ZOOM_LEVEL = 7.25;
+export const ZOOM_LEVEL = 7;
 export const CENTER_COORDS = [5.3872, 52.1561]
 
 // Setting for Chart.js graph
@@ -48,13 +48,13 @@ export function removeAllDynamicContent() {
 
 // Utility for loading all data from .JSON file
 export async function partyVariableJSON() {
-  const response = await fetch('src/assets/data/parties.json');
+  const response = await fetch('/data/parties.json');
   const parties = await response.json();
   return parties;
 }
 
 export async function partyVariableObjects() {
-  const response = await fetch('src/assets/data/parties.json');
+  const response = await fetch('/data/parties.json');
   const parties = await response.json();
   return{
     abbreviation: parties.map(p => p.abbreviation),

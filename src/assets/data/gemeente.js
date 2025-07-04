@@ -28,4 +28,28 @@ export const wmsLayerHighestMunicipalityPerParty = new ImageLayer({
   })
 });
 
+export const wmsLayerHighestMunicipalityPVV = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'gemeente_percentage_pvv' },
+      serverType: 'geoserver'
+  })
+});
+
+export const wmsLayerHighestMunicipalityGL = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'gemeente_percentage_per_party' },
+      serverType: 'geoserver'
+  })
+});
+
+export const wmsLayerHighestMunicipalityNSC = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'gemeente_percentage_nsc' },
+      serverType: 'geoserver'
+  })
+});
+
 export const wmsLayerListMunicipalitiesUrl = 'http://geoictacademy.nl/geoserver/grp1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=grp1%3Ahighest_municipality&outputFormat=application%2Fjson&maxFeatures=400';

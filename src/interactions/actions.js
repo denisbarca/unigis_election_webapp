@@ -48,15 +48,9 @@ export async function showFeaturesProps(map, evt, dataLevel) {
   if (url) {
     try {
       const response = await fetch(setProxyForUrl(url));
-      console.log(response);
-      
       const data = await response.json();
-      console.log(data);
-      
       if (data.features.length > 0) {
         const props = data.features[0].properties;
-        console.log(layerInfo.entity);
-        
         return {
           toponym: props[layerInfo.entity],
           party: props.winning_party,

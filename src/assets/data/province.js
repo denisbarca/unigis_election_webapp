@@ -53,6 +53,30 @@ export const wmsLayerHighestProvincePerParty = new ImageLayer({
   })
 });
 
+export const wmsLayerHighestProvincePVV = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'provinces_perc_pvv' },
+      serverType: 'geoserver'
+  })
+});
+
+export const wmsLayerHighestProvinceGL = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'province_perc_gl_pvda' },
+      serverType: 'geoserver'
+  })
+});
+
+export const wmsLayerHighestProvinceNSC = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'provinces_perc_nsc' },
+      serverType: 'geoserver'
+  })
+});
+
 // export const urlProvince = function(evt, viewResolution) {
 //   console.log(
 //   ));

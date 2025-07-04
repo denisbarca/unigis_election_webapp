@@ -16,10 +16,10 @@ import {Map, Tile, View} from 'ol';
 import { fromLonLat, Projection } from 'ol/proj';
 import {defaults as defaultControls} from 'ol/control/defaults.js';
 import { defaults as defaultInteractions, DragPan } from 'ol/interaction';
-import { wmsLayerCombinedProvince, wmsLayerHighestProvince } from './src/assets/data/province.js';
-import { wmsLayerHighestMunicipality, wmsLayerCombinedMunicipality } from './src/assets/data/gemeente.js';
+import { wmsLayerCombinedProvince, wmsLayerHighestProvince, wmsLayerHighestProvinceGL, wmsLayerHighestProvinceNSC, wmsLayerHighestProvincePVV } from './src/assets/data/province.js';
+import { wmsLayerHighestMunicipality, wmsLayerCombinedMunicipality, wmsLayerHighestMunicipalityPVV, wmsLayerHighestMunicipalityGL, wmsLayerHighestMunicipalityNSC } from './src/assets/data/gemeente.js';
 import { wmsLayerSimCity } from './src/assets/data/similiraties.js';
-import { wmsLayerCombinedNeigh, wmsLayerHighestNeigh } from './src/assets/data/neigh.js';
+import { wmsLayerCombinedNeigh, wmsLayerHighestNeigh, wmsLayerHighestNeighGL, wmsLayerHighestNeighNSC, wmsLayerHighestNeighPVV } from './src/assets/data/neigh.js';
 import { showFeaturesProps, showSimilarCities } from './src/interactions/actions.js';
 import { CENTER_COORDS, removeAllLayers, ZOOM_LEVEL, partyVariableObjects, partyVariableJSON, getMunicipalities, clearDropdown, downloadGeoJSON, downloadCSV } from './src/utils/helper.js';
 import { getNationalChartConfig } from './src/charts/national-chart.js';
@@ -44,7 +44,7 @@ const projection = new Projection({
 const country = new VectorLayer({
     source: new VectorSource({
     format: new GeoJSON(),
-    url: './src/assets/data/netherlands.geojson',
+    url: '/data/netherlands.geojson',
     }),
 });
 //#endregion
@@ -167,6 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     wmsLayerSimCity.getSource().updateParams({
       'CQL_FILTER': ''
     });
+    dataLevel = 'Municipality';
     map.addLayer(wmsLayerSimCity);
     map.addLayer(country);
     clearDropdown('cityDropdown', 'Select a municipality in the list');
@@ -333,7 +334,32 @@ document.getElementById("partyDropdownMenu").addEventListener("click", async fun
     removeAllLayers(map);
     document.getElementById("legend").style.display = "none";
     //TODO - Add layer based on dataLevel
-    map.addLayer(wmsLayerCombinedMunicipality);
+    switch (dataLevel) {
+      case 'Municipality':
+        if (selectedParty.includes('GL_PVDA'))
+          map.addLayer(wmsLayerHighestMunicipalityGL);
+        else if (selectedParty.includes('NSC'))
+          map.addLayer(wmsLayerHighestMunicipalityNSC);
+        else 
+          map.addLayer(wmsLayerHighestMunicipalityPVV);
+        break;
+      case 'Neigh':
+        if (selectedParty.includes('GL_PVDA'))
+          map.addLayer(wmsLayerHighestNeighGL);
+        else if (selectedParty.includes('NSC'))
+          map.addLayer(wmsLayerHighestNeighNSC);
+        else 
+          map.addLayer(wmsLayerHighestNeighPVV);
+        break;
+      default:
+        if (selectedParty.includes('GL_PVDA'))
+          map.addLayer(wmsLayerHighestProvinceGL);
+        else if (selectedParty.includes('NSC'))
+          map.addLayer(wmsLayerHighestProvinceNSC);
+        else 
+          map.addLayer(wmsLayerHighestProvincePVV);
+        break;
+    }
   }
 });
 //#endregion

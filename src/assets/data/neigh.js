@@ -24,3 +24,27 @@ export const wmsLayerHighestNeighPerParty = new ImageLayer({
       serverType: 'geoserver'
   })
 });
+
+export const wmsLayerHighestNeighPVV = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'neighbourhood_perc_pvv' },
+      serverType: 'geoserver'
+  })
+});
+
+export const wmsLayerHighestNeighGL = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'neighbourhood_perc_gl_pvda' },
+      serverType: 'geoserver'
+  })
+});
+
+export const wmsLayerHighestNeighNSC = new ImageLayer({
+  source: new ImageWMS({
+      url: 'http://geoictacademy.nl/geoserver/grp1/wms',
+      params: { LAYERS: 'neighbourhood_perc_nsc' },
+      serverType: 'geoserver'
+  })
+});
