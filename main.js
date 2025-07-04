@@ -104,8 +104,10 @@ document.getElementById("neigh-btn").addEventListener("click", () => {
 
 function showProvince() {
   removeAllLayers(map);
-  map.addLayer(wmsLayerHighestProvince);
+  map.addLayer(wmsLayerCombinedProvince);
   dataLevel = 'Province';
+  console.log(map.getAllLayers());
+  
   // document.querySelectorAll('#data-single-content-prov, #data-single-content-mun, #data-single-content-neigh')
   //     .forEach(el => el.style.display = 'none');
   // resetMap(map);
@@ -113,11 +115,11 @@ function showProvince() {
 
 function showMunicipality() {
   removeAllLayers(map);
-  map.addLayer(wmsLayerHighestMunicipality); 
-  wmsLayerHighestMunicipality.on('imageloadstart', () => {
-  loadingImages++;
-  spinner.style.display = 'block';
-}); 
+  map.addLayer(wmsLayerCombinedMunicipality); 
+//   wmsLayerHighestMunicipality.on('imageloadstart', () => {
+//   loadingImages++;
+//   spinner.style.display = 'block';
+// }); 
   dataLevel = 'Municipality';
   // document.querySelectorAll('#data-single-content-prov, #data-single-content-mun, #data-single-content-neigh')
   //     .forEach(el => el.style.display = 'none');
@@ -126,7 +128,7 @@ function showMunicipality() {
 
 function showNeigh() {
   removeAllLayers(map);
-  map.addLayer(wmsLayerHighestNeigh);
+  map.addLayer(wmsLayerCombinedNeigh);
   dataLevel = 'Neigh';
   // document.querySelectorAll('#data-single-content-prov, #data-single-content-mun, #data-single-content-neigh')
   //     .forEach(el => el.style.display = 'none');
@@ -148,7 +150,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     downloadBtn.style.display = "block";
     document.getElementById("data-single-content").style.display = "none";
     removeAllLayers(map);
-    map.addLayer(wmsLayerHighestProvince);
+    map.addLayer(wmsLayerCombinedProvince);
     await setPartiesForm();
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
@@ -182,7 +184,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     downloadBtn.style.display = "none";
     showSection("main-content");
     removeAllLayers(map);
-    map.addLayer(wmsLayerHighestProvince);
+    map.addLayer(wmsLayerCombinedProvince);
     document.getElementById("legend").style.display = 'block';
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
@@ -247,8 +249,20 @@ map.on('singleclick', async function (evt) {
     const voteEl = document.getElementById("votePercentage");
 
     if (nameEl && voteEl) {
+      // switch (dataLevel) {
+      //   case 'Municipality':
+      //     nameEl.textContent = `${objDataLevel.province}`;
+      //     break;
+      //   case 'Neigh':
+      //     nameEl.textContent = `${objDataLevel.city}`;
+      //     break;
+      //   default:
+      //     nameEl.textContent = `${objDataLevel.neighbourhood}`;
+      //     break;
+      // }
+      console.log(nameEl.textContent, objDataLevel);
       nameEl.textContent = `${objDataLevel.toponym}`;
-      console.log(nameEl.textContent);
+
       
       // nameMunEl.textContent = `${objDataLevel.toponym}`;
       // nameProvEl.textContent = `${objDataLevel.toponym}`;

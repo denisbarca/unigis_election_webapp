@@ -9,20 +9,20 @@ function setLayer(dataLevel) {
   switch (dataLevel) {
     case 'Municipality':
       return {
-        layerName: 'grp1:highest_municipality',
-        layer: wmsLayerHighestMunicipality,
+        layerName: 'grp1:combined_municipality',
+        layer: wmsLayerCombinedMunicipality,
         entity: 'city'
       }
     case 'Neigh':
       return {
-        layerName: 'grp1:highest_neighbourhood',
-        layer: wmsLayerHighestNeigh,
+        layerName: 'grp1:combined_neighbourhoods',
+        layer: wmsLayerCombinedNeigh,
         entity: 'neighbourhood'
       }
     default:
       return {        
-        layerName: 'grp1:highest_province',
-        layer: wmsLayerHighestProvince,
+        layerName: 'grp1:combined_provinces',
+        layer: wmsLayerCombinedProvince,
         entity: 'province'
       }
   }
@@ -55,10 +55,12 @@ export async function showFeaturesProps(map, evt, dataLevel) {
       
       if (data.features.length > 0) {
         const props = data.features[0].properties;
+        console.log(layerInfo.entity);
+        
         return {
           toponym: props[layerInfo.entity],
-          party: props.party,
-          vote: props.percentage_votes,
+          party: props.winning_party,
+          vote: props.highest_percentage,
           // top5_party: Object.fromEntries(
           //   Object.entries(obj).filter(([key]) => !excludedKeys.includes(key))
           // )
@@ -98,50 +100,50 @@ export async function showSimilarCities(selectedCity) {
   return null;
 }
 
-export async function showFeaturesProps(map, evt, dataLevel) {
-  let layerInfo = setLayer(dataLevel);
+// export async function showFeaturesProps(map, evt, dataLevel) {
+//   let layerInfo = setLayer(dataLevel);
 
-  const view = map.getView();
-  const viewResolution = view.getResolution();
-  const url = layerInfo.layer.getSource().getFeatureInfoUrl(
-    evt.coordinate,
-    viewResolution,
-    'EPSG:28992',
-    {
-      'INFO_FORMAT': 'application/json',
-      'QUERY_LAYERS': layerInfo.layerName,
-    }
-  );
-  console.log(url);
+//   const view = map.getView();
+//   const viewResolution = view.getResolution();
+//   const url = layerInfo.layer.getSource().getFeatureInfoUrl(
+//     evt.coordinate,
+//     viewResolution,
+//     'EPSG:28992',
+//     {
+//       'INFO_FORMAT': 'application/json',
+//       'QUERY_LAYERS': layerInfo.layerName,
+//     }
+//   );
+//   console.log(url);
   
 
-  if (url) {
-    try {
-      const response = await fetch(setProxyForUrl(url));
-      console.log(response);
+//   if (url) {
+//     try {
+//       const response = await fetch(setProxyForUrl(url));
+//       console.log(response);
       
-      const data = await response.json();
-      console.log(data);
+//       const data = await response.json();
+//       console.log(data);
       
-      if (data.features.length > 0) {
-        const props = data.features[0].properties;
-        return {
-          toponym: props[layerInfo.entity],
-          party: props.party,
-          vote: props.percentage_votes,
-          // top5_party: Object.fromEntries(
-          //   Object.entries(obj).filter(([key]) => !excludedKeys.includes(key))
-          // )
-        };
-      } else {
-        alert('No feature found at clicked location.');
-        return null;
-      }
-    } catch (error) {
-      console.error('GetFeatureInfo error:', error);
-      return null;
-    }
-  }
+//       if (data.features.length > 0) {
+//         const props = data.features[0].properties;
+//         return {
+//           toponym: props[layerInfo.entity],
+//           party: props.party,
+//           vote: props.percentage_votes,
+//           // top5_party: Object.fromEntries(
+//           //   Object.entries(obj).filter(([key]) => !excludedKeys.includes(key))
+//           // )
+//         };
+//       } else {
+//         alert('No feature found at clicked location.');
+//         return null;
+//       }
+//     } catch (error) {
+//       console.error('GetFeatureInfo error:', error);
+//       return null;
+//     }
+//   }
 
-  return null;
-}
+//   return null;
+// }

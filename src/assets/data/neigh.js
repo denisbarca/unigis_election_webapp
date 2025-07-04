@@ -12,7 +12,7 @@ export const wmsLayerHighestNeigh = new ImageLayer({
 export const wmsLayerCombinedNeigh = new ImageLayer({
   source: new ImageWMS({
       url: 'http://geoictacademy.nl/geoserver/grp1/wms',
-      params: { LAYERS: 'combined_neighbourhood' },
+      params: { LAYERS: 'combined_neighbourhoods' },
       serverType: 'geoserver'
   })
 });
