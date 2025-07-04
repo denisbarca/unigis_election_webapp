@@ -100,7 +100,10 @@ updateButtonState();
 document.getElementById("province-btn").addEventListener("click", () => {
   showProvince();
   dataLevel = 'Province';
-  if (window.location.hash == '#/stats') clearDropdown('partyDropdown', 'Select a political party');
+  if (window.location.hash == '#/stats') {
+    // document.getElementById("legend-party").style.display = 'none';
+    clearDropdown('partyDropdown', 'Select a political party');
+  }
 });
 document.getElementById("province-btn").click();
 // #endregion
@@ -109,13 +112,20 @@ document.getElementById("province-btn").click();
 document.getElementById("municipality-btn").addEventListener("click", () => {
   showMunicipality();
   dataLevel = 'Municipality';
-  if (window.location.hash == '#/stats') clearDropdown('partyDropdown', 'Select a political party');
+  if (window.location.hash == '#/stats') {
+    // document.getElementById("legend-party").style.display = 'none';
+    // document.getElementById("legend-image").remove();
+    clearDropdown('partyDropdown', 'Select a political party');
+  }
 });
 
 document.getElementById("neigh-btn").addEventListener("click", () => {
   showNeigh();
   dataLevel = 'Neigh';
-  if (window.location.hash == '#/stats') clearDropdown('partyDropdown', 'Select a political party');
+  if (window.location.hash == '#/stats') {
+    // document.getElementById("legend-party").style.display = 'none';
+    clearDropdown('partyDropdown', 'Select a political party');
+  }
 });
 
 function showProvince() {
@@ -165,9 +175,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     await setPartiesForm();
     clearDropdown('cityDropdown', 'Select a municipality in the list');
     clearDropdown('partyDropdown', 'Select a political party');
-    console.log(legendProvincePVV);
-    
-    // document.getElementById('legend-image').src = legendProvincePVV;
     // document.getElementById('topsCities').style.display = 'none';
     // showSection("stats-content");
     // showSection("data-single-content-prov");
@@ -189,8 +196,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("legend").style.display = "none";
     document.getElementById("legend-party").style.display = 'none';
     await setMunicipalitiesForm();
-    console.log(map.getAllLayers());
-    
     // showSection("stats-content");
     // resetMap(map);
   });
@@ -240,20 +245,6 @@ map.on('singleclick', async function (evt) {
     el.style.display = 'none';
   });
   showSection("data-single-content");
-  // // Show relevant sections based on hash and dataLevel
-  // if (window.location.hash === '#/stats') {
-  //   showSection("stats-content");
-  //   // if (dataLevel === 'Province') {
-  //   // } else if (dataLevel === 'Municipality') {
-  //   //   showSection("stats-content", "data-single-content-mun");
-  //   // } else if (dataLevel === 'Neigh') {
-  //   //   showSection("stats-content", "data-single-content-neigh");
-  //   // }
-  // } else {
-  //   console.log('ddddd');
-    
-  //    // fallback
-  // }
 
   // Only update the DOM after relevant section is shown
   if (objDataLevel) {
@@ -290,6 +281,32 @@ map.on('singleclick', async function (evt) {
     }
  }
 });
+//#endregion
+
+//#region 
+function hideLegendIfStatsContext() {
+  const hash = window.location.hash;
+  if (hash === "#/stats") {
+    const legend = document.getElementById("legend-party");
+    if (legend) {
+      legend.style.display = "none";
+    }
+  }
+}
+// Attach event listeners to the buttons
+document.getElementById("municipality-btn").addEventListener("click", hideLegendIfStatsContext);
+document.getElementById("province-btn").addEventListener("click", hideLegendIfStatsContext);
+document.getElementById("neigh-btn").addEventListener("click", hideLegendIfStatsContext);
+
+// window.addEventListener("hashchange", () => {
+//   const legend = document.getElementById("legend-party");
+//   if (window.location.hash === "#/stats") {
+//     legend.style.display = "block"; // or "flex", if that’s how it’s usually shown
+//   } else {
+//     legend.style.display = "none";
+//   }
+// });
+
 //#endregion
 
 //#region Winning party card 
@@ -349,9 +366,13 @@ document.getElementById("partyDropdownMenu").addEventListener("click", async fun
   if (selectedParty) {
     removeAllLayers(map);
     document.getElementById("legend").style.display = "none";
+    // document.getElementById("legend-party").style.display = "block";
     //TODO - Add layer based on dataLevel
     switch (dataLevel) {
       case 'Municipality':
+        document.getElementById("legend-party").style.display = "block";
+        console.log('here');
+        
         if (selectedParty.includes('GL_PVDA')) {
           map.addLayer(wmsLayerHighestMunicipalityGL);
           document.getElementById('legend-image').src = legendMunicipalityGL;
@@ -366,6 +387,7 @@ document.getElementById("partyDropdownMenu").addEventListener("click", async fun
         }
         break;
       case 'Neigh':
+        document.getElementById("legend-party").style.display = "block";
         if (selectedParty.includes('GL_PVDA')) {
           map.addLayer(wmsLayerHighestNeighGL);
           document.getElementById('legend-image').src = legendNeighGL;
@@ -380,6 +402,7 @@ document.getElementById("partyDropdownMenu").addEventListener("click", async fun
         }
         break;
       default:
+        document.getElementById("legend-party").style.display = "block";
         if (selectedParty.includes('GL_PVDA')) {
           map.addLayer(wmsLayerHighestProvinceGL);
           document.getElementById('legend-image').src = legendProvinceGL;
@@ -533,20 +556,8 @@ function showSection(id, contentBelow) {
     target.style.display = 'block';
   }
   document.getElementById('topsCities').innerHTML = '';
-
-  // if (contentBelow) {
-  //   document.getElementById(contentBelow).style.display = "block";
-  // }
 }
 //#endregion
-
-// if (dataLevel === 'Province') {
-//       showSection("stats-content", "data-single-content-prov");
-//     } else if (dataLevel === 'Municipality') {
-//       showSection("stats-content", "data-single-content-mun");
-//     } else if (dataLevel === 'Neigh') {
-//       showSection("stats-content", "data-single-content-neigh");
-//     }
 
 //#region Charts
 getNationalChartConfig().then(config => {

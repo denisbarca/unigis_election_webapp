@@ -66,8 +66,8 @@ html, body {
   left: 10%;
   z-index: 100;
   bottom: 10px;
-  width: 300px;
-  height: auto;
+  /* width: 100px; */
+  height: fit-content;
   /* background: white;
   padding: 5px;
   border: 1px solid #ccc; */
